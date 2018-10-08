@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import vn.fujinet.employee.application.service.EmployeeService;
 
 @RestController
-@RequestMapping("/employee")
+//@RequestMapping("/employee")
 public class EmployeeConrtroller {
 
-	@RequestMapping("")
+	@RequestMapping("/")
 	public String index()
 	{
 		return "Hello World";

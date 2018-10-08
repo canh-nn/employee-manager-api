@@ -1,6 +1,3 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -10,40 +7,32 @@ buildscript {
     }
 }
 
-eclipse {
-    project {
-        name = 'EmployeeManageAPI'
-    }
-}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-sourceCompatibility = 1.5
-version = '1.0'
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                   'Implementation-Version': version
-    }
+bootJar {
+    baseName = 'gs-accessing-data-mysql'
+    version =  '0.1.0'
 }
 
 repositories {
     mavenCentral()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 dependencies {
-    compile (
-		"org.springframework.boot:spring-boot-starter-web:2.0.5.RELEASE"
-	)
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-}
+    compile("org.springframework.boot:spring-boot-starter-web")
 
-test {
-    systemProperties 'property': 'value'
-}
+    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
-    }
+    // Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
